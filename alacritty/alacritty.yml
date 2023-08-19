@@ -5,7 +5,7 @@ window:
   title: Alacritty
   dynamic_title: true
   dynamic_padding: true
-  opacity: .9
+  opacity: 1
 
   dimensions:
     columns: 105
