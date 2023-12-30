@@ -72,14 +72,14 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
 	awful.layout.suit.spiral,
-	awful.layout.suit.spiral.dwindle,
-	awful.layout.suit.floating,
+	-- awful.layout.suit.spiral.dwindle,
 	awful.layout.suit.tile,
-	awful.layout.suit.tile.left,
-	awful.layout.suit.tile.bottom,
-	awful.layout.suit.tile.top,
-	awful.layout.suit.fair,
-	awful.layout.suit.fair.horizontal,
+	awful.layout.suit.floating,
+	-- awful.layout.suit.tile.left,
+	-- awful.layout.suit.tile.bottom,
+	-- awful.layout.suit.tile.top,
+	-- awful.layout.suit.fair,
+	-- awful.layout.suit.fair.horizontal,
 	-- awful.layout.suit.magnifier,
 	-- awful.layout.suit.corner.nw,
 	-- awful.layout.suit.max,
@@ -124,6 +124,12 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
+-- widgets
+
+-- Separator
+tbox_separator2 = wibox.widget.textbox("   ")
+tbox_separator = wibox.widget.textbox("| ")
+
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
@@ -155,7 +161,7 @@ local taglist_buttons = gears.table.join(
 local tasklist_buttons = gears.table.join(
 	awful.button({}, 1, function(c)
 		if c == client.focus then
-			c.minimized = true
+			c.minimized = false
 		else
 			c:emit_signal("request::activate", "tasklist", { raise = true })
 		end
@@ -234,6 +240,8 @@ awful.screen.connect_for_each_screen(function(s)
 		layout = wibox.layout.align.horizontal,
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
+			s.mylayoutbox,
+			tbox_separator2,
 			s.mytaglist,
 			s.mypromptbox,
 		},
@@ -243,7 +251,6 @@ awful.screen.connect_for_each_screen(function(s)
 			mykeyboardlayout,
 			wibox.widget.systray(),
 			mytextclock,
-			s.mylayoutbox,
 		},
 	})
 end)
@@ -379,15 +386,6 @@ clientkeys = gears.table.join(
 	awful.key({ modkey }, "t", function(c)
 		c.ontop = not c.ontop
 	end, { description = "toggle keep on top", group = "client" }),
-	awful.key({ modkey }, "n", function(c)
-		-- The client currently has the input focus, so it cannot be
-		-- minimized, since minimized clients can't have the focus.
-		c.minimized = true
-	end, { description = "minimize", group = "client" }),
-	awful.key({ modkey }, "m", function(c)
-		c.maximized = not c.maximized
-		c:raise()
-	end, { description = "(un)maximize", group = "client" }),
 	awful.key({ modkey, "Control" }, "m", function(c)
 		c.maximized_vertical = not c.maximized_vertical
 		c:raise()
