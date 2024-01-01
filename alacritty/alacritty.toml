@@ -1,0 +1,45 @@
+import = ["/home/drew/.config/alacritty/theme/hyper.toml"]
+
+[font]
+size = 11
+
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrains Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Italic"
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[scrolling]
+history = 5000
+
+[window]
+dynamic_padding = true
+dynamic_title = true
+opacity = 1
+title = "Alacritty"
+
+[window.dimensions]
+columns = 105
+lines = 25
+
+[window.padding]
+x = 0
+y = 0
+
+[window.position]
+x = 0
+y = 0
