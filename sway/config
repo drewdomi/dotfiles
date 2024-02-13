@@ -1,11 +1,3 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
-### Variables
-#
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -15,15 +7,17 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term alacritty
+set $browser firefox
+set $file_manager dbus-launch thunar
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu tofi-run | xargs swaymsg exec --
+set $menu wofi --show drun
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/drew/Pictures/wallapers/wallpaper.jpg fill
 #
 # Example configuration:
 #
@@ -35,6 +29,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
+
+exec pipewire
+exec amixer -c 0 sset "Auto-Mute Mode" Enabled
+exec /usr/libexec/polkit-gnome-authentication-agent-1
+
 # exec swayidle -w \
 #          timeout 300 'swaylock -f -c 000000' \
 #          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -54,7 +53,15 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #       natural_scroll enabled
 #       middle_emulation enabled
 #   }
-#
+
+input type:keyboard {
+      xkb_layout "us,br"
+      xkb_variant "intl,abnt2"
+      xkb_options "grp:alt_shift_toggle"
+}
+
+seat seat0 hide_cursor when-typing enable
+
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
@@ -64,6 +71,8 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+b exec $browser
+    bindsym $mod+e exec $file_manager
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -82,7 +91,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you want exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -140,7 +149,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
+    bindsym $mod+x splith
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
@@ -175,10 +184,6 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # Resizing containers:
 #
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
@@ -198,29 +203,18 @@ bindsym $mod+r mode "resize"
 
 
 # Window borders
-default_border pixel 3
-# default_floating_border normal
-# hide_edge_borders smart
+default_border pixel 2
+gaps inner 20
+gaps outer 5
 
-# smart_gaps on
-gaps inner 7
+client.focused          #2e9ef4 #2e9ef4 #2e9ef4 #2e9ef4   #2e9ef4
+client.focused_inactive #5f676a #5f676a #5f676a #5f676a   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #ad1714 #ad1714 #ad1714 #ad1714   #ad1714
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    swaybar_command waybar
 }
 
 include /etc/sway/config.d/*
