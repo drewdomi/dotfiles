@@ -1,7 +1,7 @@
 import = ["/home/drew/.config/alacritty/theme/hyper.toml"]
 
 [font]
-size = 9
+size = 11
 
 [font.bold]
 family = "JetBrains Mono"
@@ -29,7 +29,7 @@ history = 5000
 [window]
 dynamic_padding = true
 dynamic_title = true
-opacity = 0.9
+opacity = 0.8
 title = "Alacritty"
 
 [window.dimensions]
@@ -43,3 +43,6 @@ y = 0
 [window.position]
 x = 0
 y = 0
+
+[mouse]
+  hide_when_typing = true

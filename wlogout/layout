@@ -1,0 +1,20 @@
+{
+    "action" : "swaylock",
+    "text" : "Lock ",
+    "keybind" : "l"
+},
+{
+    "action" : "swaylock & loginctl suspend",
+    "text" : "Suspend 󰏦",
+    "keybind" : "s"
+},
+{
+    "action" : "loginctl reboot",
+    "text" : "Reboot 󰑓",
+    "keybind" : "r"
+},
+{
+    "action" : "loginctl poweroff",
+    "text" : "Poweroff ",
+    "keybind" : "p"
+},
