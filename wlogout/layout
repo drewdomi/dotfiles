@@ -1,20 +1,24 @@
 {
     "action" : "swaylock",
-    "text" : "Lock ",
-    "keybind" : "l"
+    "text" : "1 - Lock ",
+    "label" : "lock",
+    "keybind" : "1"
 },
 {
-    "action" : "swaylock & loginctl suspend",
-    "text" : "Suspend 󰏦",
-    "keybind" : "s"
+    "action" : "swaylock & systemctl suspend",
+    "text" : "3 - Suspend 󰏦",
+    "label" : "suspend",
+    "keybind" : "3"
 },
 {
-    "action" : "loginctl reboot",
-    "text" : "Reboot 󰑓",
-    "keybind" : "r"
+    "action" : "reboot",
+    "text" : "2 - Reboot 󰑓",
+    "label" : "reboot",
+    "keybind" : "2"
 },
 {
-    "action" : "loginctl poweroff",
-    "text" : "Poweroff ",
-    "keybind" : "p"
+    "action" : "poweroff",
+    "text" : "4 - Poweroff ",
+    "label" : "poweroff",
+    "keybind" : "4"
 },

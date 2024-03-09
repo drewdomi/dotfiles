@@ -1,0 +1,30 @@
+* {
+  border: none;
+  border-radius: 0;
+}
+
+*:focus {
+  border: none;
+}
+window {
+  font-size: 16px;
+  font-family: "Noto Sans";
+  border-radius: 6px;
+  background-color: #222222;
+}
+#input {
+  background-color: #2b2b2b;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  padding: 8px;
+}
+#img {
+  padding: 2px;
+  padding-right: 8px;
+}
+#entry {
+  padding: 8px;
+}
+#entry:selected {
+  background-color: #231f77;
+}
