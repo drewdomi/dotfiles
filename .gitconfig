@@ -1,0 +1,32 @@
+[user]
+	email = contato@drewdomi.com
+	name = Andrew Domingues
+	signingkey = 4464EDCA3287E506
+[alias]
+	aa = !git add -A && git status
+	amm = !git commit --amend --no-edit
+	acc = !git aa && git cmm
+	ss = status --short
+	ba = branch -a
+	cmm = commit
+	cl = clone
+	ck = checkout
+	pp = !git pull && git push
+	lo = log --oneline --pretty=format:'%C(blue)%h%C(red)%d %C(reset)%s - %C(cyan)%cn, %C(green)%cr'
+	psh = push
+	pll = pull
+[core]
+	editor = nvim
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[safe]
+	directory = /opt/quickemu
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
+[push]
+	followTags = true
